@@ -1,6 +1,44 @@
 version: 2.1
 
 jobs:
+  deploy-root-service:
+    docker:
+      - image: circleci/node:8.10
+    parameters:
+      service_path:
+        type: string
+      stage_name:
+        type: string
+    steps:
+      - checkout
+
+      - restore_cache:
+          keys:
+            - dependencies-cache-{{ checksum "package-lock.json" }}-{{ checksum "<< parameters.service_path >>/package-lock.json" }}
+            - dependencies-cache
+
+      - run:
+          name: Install Serverless CLI
+          command: sudo npm i -g serverless
+
+      - run:
+          name: Install dependencies
+          command: |
+            npm install
+            cd << parameters.service_path >>
+            npm install
+
+      - run:
+          name: Deploy application
+          command: |
+            cd << parameters.service_path >>
+            serverless deploy -s << parameters.stage_name >>
+
+      - save_cache:
+          paths:
+            - node_modules
+            - << parameters.service_path >>/node_modules
+          key: dependencies-cache-{{ checksum "package-lock.json" }}-{{ checksum "<< parameters.service_path >>/package-lock.json" }}
   deploy-service:
     docker:
       - image: circleci/node:8.10
@@ -49,7 +87,7 @@ workflows:
           stage_name: dev
           context: Development
 
-      - deploy-applications-service:
+      - deploy-service:
           name: Deploy Applications API
           service_path: services/applications-api
           stage_name: dev
@@ -57,7 +95,7 @@ workflows:
           requires:
             - deploy-root-service
 
-      - deploy-cas-service:
+      - deploy-service:
           name: Deploy CAs API
           service_path: services/cas-api
           stage_name: dev
@@ -65,7 +103,7 @@ workflows:
           requires:
             - deploy-root-service
 
-      - deploy-chaincodes-service:
+      - deploy-service:
           name: Deploy Chaincodes API
           service_path: services/chaincodes-api
           stage_name: dev
@@ -73,7 +111,7 @@ workflows:
           requires:
             - deploy-root-service
 
-      - deploy-channels-service:
+      - deploy-service:
           name: Deploy Channels API
           service_path: services/channels-api
           stage_name: dev
@@ -81,7 +119,7 @@ workflows:
           requires:
             - deploy-root-service
 
-      - deploy-consortiums-service:
+      - deploy-service:
           name: Deploy Consortiums API
           service_path: services/consortiums-api
           stage_name: dev
@@ -89,7 +127,7 @@ workflows:
           requires:
             - deploy-root-service
 
-      - deploy-extnetworks-service:
+      - deploy-service:
           name: Deploy ExtNetworks API
           service_path: services/extnetworks-api
           stage_name: dev
@@ -97,7 +135,7 @@ workflows:
           requires:
             - deploy-root-service
 
-      - deploy-networks-service:
+      - deploy-service:
           name: Deploy Networks API
           service_path: services/networks-api
           stage_name: dev
@@ -105,7 +143,7 @@ workflows:
           requires:
             - deploy-root-service
 
-      - deploy-orderers-service:
+      - deploy-service:
           name: Deploy Orderers API
           service_path: services/orderers-api
           stage_name: dev
@@ -113,7 +151,7 @@ workflows:
           requires:
             - deploy-root-service
 
-      - deploy-orgs-service:
+      - deploy-service:
           name: Deploy Orgs API
           service_path: services/orgs-api
           stage_name: dev
@@ -121,7 +159,7 @@ workflows:
           requires:
             - deploy-root-service
 
-      - deploy-peers-service:
+      - deploy-service:
           name: Deploy Peers API
           service_path: services/peers-api
           stage_name: dev
@@ -129,7 +167,7 @@ workflows:
           requires:
             - deploy-root-service
 
-      - deploy-transactions-service:
+      - deploy-service:
           name: Deploy Transactions API
           service_path: services/transactions-api
           stage_name: dev
@@ -137,21 +175,11 @@ workflows:
           requires:
             - deploy-root-service
 
-      - deploy-auth-service:
+      - deploy-service:
           name: Deploy Auth
           service_path: services/auth
           stage_name: dev
           context: Development
           requires:
             - deploy-root-service
-            - deploy-applications-service
-            - deploy-cas-service
-            - deploy-chaincodes-service
-            - deploy-channels-service
-            - deploy-consortiums-service
-            - deploy-extnetworks-service
-            - deploy-networks-service
-            - deploy-orderers-service
-            - deploy-orgs-service
-            - deploy-peers-service
-            - deploy-transactions-service
+            - deploy-service
