@@ -1,0 +1,11 @@
+{
+  "body": "{\"name\":\"devoidchannel\",\"chaincodes\":[\"cc_master\",\"user_master\"],\"applications\":[\"OID\"]}",
+  "pathParameters": {
+    "name": "devoidchannel"
+  },
+  "requestContext": {
+    "identity": {
+      "cognitoIdentityId": "USER-SUB-1234"
+    }
+  }
+}

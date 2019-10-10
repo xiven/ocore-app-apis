@@ -1,0 +1,11 @@
+{
+  "body": "{\"name\": \"OID Peer 1\",\"peerUrl\": \"grpcs://localhost:7051\",\"eventUrl\": \"grpcs://localhost:7053\",\"endorsingPeer\": \"false\",\"chaincodeQuery\": \"false\",\"ledgerQuery\": \"false\",\"eventSource\": \"false\"}",
+  "pathParameters": {
+    "name": "OID Peer 1"
+  },
+  "requestContext": {
+    "identity": {
+      "cognitoIdentityId": "USER-SUB-1234"
+    }
+  }
+}

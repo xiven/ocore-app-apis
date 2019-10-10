@@ -1,0 +1,11 @@
+{
+  "body": "{\"name\": \"Soy\",\"domain\": \"Supply Chain Management\",\"admin\": \"unileveradmin\",\"network\": \"Unilever\",\"chaincodes\":[\"scm_master\"]}",
+  "pathParameters": {
+    "name": "Soy"
+  },
+  "requestContext": {
+    "identity": {
+      "cognitoIdentityId": "USER-SUB-1234"
+    }
+  }
+}

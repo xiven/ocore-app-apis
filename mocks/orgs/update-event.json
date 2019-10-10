@@ -1,0 +1,11 @@
+{
+  "body": "{\"name\":\"Org1\",\"mspId\":\"Org1MSP\",\"url\":\"omnitude.tech\",\"cas\":[\"ca-org1\"]}",
+  "pathParameters": {
+    "name": "Org1"
+  },
+  "requestContext": {
+    "identity": {
+      "cognitoIdentityId": "USER-SUB-1234"
+    }
+  }
+}

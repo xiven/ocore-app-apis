@@ -1,0 +1,11 @@
+{
+  "body": "{\"name\":\"OID Orderer 1\",\"url\":\"orderer1.omnitude.work\"}",
+  "pathParameters": {
+    "name": "OID Orderer 1"
+  },
+  "requestContext": {
+    "identity": {
+      "cognitoIdentityId": "USER-SUB-1234"
+    }
+  }
+}

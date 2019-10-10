@@ -1,0 +1,11 @@
+{
+  "body": "{\"name\":\"OID CA 1\",\"url\":\"https://ca:6904/\"}",
+  "pathParameters": {
+    "name": "OID CA"
+  },
+  "requestContext": {
+    "identity": {
+      "cognitoIdentityId": "USER-SUB-1234"
+    }
+  }
+}

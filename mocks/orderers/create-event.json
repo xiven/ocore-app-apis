@@ -1,0 +1,8 @@
+{
+  "body": "{\"name\":\"OID Orderer 1\",\"url\":\"orderer1.example.com\"}",
+  "requestContext": {
+    "identity": {
+      "cognitoIdentityId": "USER-SUB-1234"
+    }
+  }
+}

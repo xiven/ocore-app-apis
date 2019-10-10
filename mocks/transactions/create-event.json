@@ -1,0 +1,8 @@
+{
+  "body": "{\"transactionType\": \"OID User Profile Global Scope\",\"payor\": \"Org\",\"payee\":\"User:75; Omnitude:25\",\"ecom\": \"1.25000\"}",
+  "requestContext": {
+    "identity": {
+      "cognitoIdentityId": "USER-SUB-1234"
+    }
+  }
+}

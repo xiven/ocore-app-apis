@@ -1,0 +1,8 @@
+{
+  "body": "{\"name\":\"OID CA\",\"url\":\"https://ca:6904/\"}",
+  "requestContext": {
+    "identity": {
+      "cognitoIdentityId": "USER-SUB-1234"
+    }
+  }
+}

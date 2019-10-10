@@ -1,0 +1,10 @@
+{
+  "pathParameters": {
+    "name": "Omnitude ID"
+  },
+  "requestContext": {
+    "identity": {
+      "cognitoIdentityId": "USER-SUB-1234"
+    }
+  }
+}

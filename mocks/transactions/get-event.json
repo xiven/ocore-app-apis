@@ -1,0 +1,10 @@
+{
+  "pathParameters": {
+    "transactionType": "OID User Profile Global Scope"
+  },
+  "requestContext": {
+    "identity": {
+      "cognitoIdentityId": "USER-SUB-1234"
+    }
+  }
+}

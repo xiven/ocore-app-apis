@@ -1,0 +1,11 @@
+{
+  "body": "{\"key\":\"core-application\",\"name\":\"application_master\",\"version\":\"v0\",\"path\":\"application_master\",\"admins\":[\"adminCCApplication\"],\"applications\":[\"OCORE\"],\"endorsementType\":\"OR\",\"policy\":[\"Org1MSP.client\"]}",
+  "pathParameters": {
+    "name": "application_master"
+  },
+  "requestContext": {
+    "identity": {
+      "cognitoIdentityId": "USER-SUB-1234"
+    }
+  }
+}

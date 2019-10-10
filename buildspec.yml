@@ -1,0 +1,18 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 10
+    commands:
+      - npm install -g serverless
+      - npm install
+      - cd ${SERVICE_PATH} && npm install && cd -
+  build:
+    commands:
+      - cd ${SERVICE_PATH} && serverless deploy -s dev && cd -
+
+cache:
+  paths:
+    - node_modules
+    - ${SERVICE_PATH}/node_modules

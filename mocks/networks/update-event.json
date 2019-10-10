@@ -1,0 +1,11 @@
+{
+  "body": "{\"name\":\"OID\",\"peers\": [\"peer0.org1.omnitude.work\",\"peer1.org1.omnitude.work\"],\"orderers\": [\"orderer0.omnitude.work\",\"orderer1.omnitude.work\"],\"cas\": [\"ca-org1\"],\"applications\": [\"OID\",\"OIDC\",\"OECOM\"]}",
+  "pathParameters": {
+    "name": "OID"
+  },
+  "requestContext": {
+    "identity": {
+      "cognitoIdentityId": "USER-SUB-1234"
+    }
+  }
+}

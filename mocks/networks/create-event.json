@@ -1,0 +1,8 @@
+{
+  "body": "{\"name\":\"OID\",\"peers\": [\"peer0.org1.example.com\",\"peer1.org1.example.com\"],\"orderers\": [\"orderer0.example.com\",\"orderer1.example.com\"],\"cas\": [\"ca-org1\"],\"applications\": [\"OID\",\"OIDC\",\"OECOM\"]}",
+  "requestContext": {
+    "identity": {
+      "cognitoIdentityId": "USER-SUB-1234"
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "body": "{\"name\":\"Org1\",\"mspId\":\"Org1MSP\",\"url\":\"example.com\",\"cas\":[\"ca-org1\"]}",
+  "requestContext": {
+    "identity": {
+      "cognitoIdentityId": "USER-SUB-1234"
+    }
+  }
+}
