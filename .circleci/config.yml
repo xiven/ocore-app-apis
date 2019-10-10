@@ -43,80 +43,115 @@ jobs:
 workflows:
   build-deploy:
     jobs:
-      - deploy-service:
+      - deploy-root-service:
           name: Deploy Root API
           service_path: services/root-api
-          stage_name: ${CIRCLE_BRANCH}
+          stage_name: dev
           context: Development
 
-      - deploy-service:
+      - deploy-applications-service:
           name: Deploy Applications API
           service_path: services/applications-api
-          stage_name: ${CIRCLE_BRANCH}
+          stage_name: dev
           context: Development
+          requires:
+            - deploy-root-service
 
-      - deploy-service:
+      - deploy-cas-service:
           name: Deploy CAs API
           service_path: services/cas-api
-          stage_name: ${CIRCLE_BRANCH}
+          stage_name: dev
           context: Development
+          requires:
+            - deploy-root-service
 
-      - deploy-service:
+      - deploy-chaincodes-service:
           name: Deploy Chaincodes API
           service_path: services/chaincodes-api
-          stage_name: ${CIRCLE_BRANCH}
+          stage_name: dev
           context: Development
+          requires:
+            - deploy-root-service
 
-      - deploy-service:
+      - deploy-channels-service:
           name: Deploy Channels API
           service_path: services/channels-api
-          stage_name: ${CIRCLE_BRANCH}
+          stage_name: dev
           context: Development
+          requires:
+            - deploy-root-service
 
-      - deploy-service:
+      - deploy-consortiums-service:
           name: Deploy Consortiums API
           service_path: services/consortiums-api
-          stage_name: ${CIRCLE_BRANCH}
+          stage_name: dev
           context: Development
+          requires:
+            - deploy-root-service
 
-      - deploy-service:
+      - deploy-extnetworks-service:
           name: Deploy ExtNetworks API
           service_path: services/extnetworks-api
-          stage_name: ${CIRCLE_BRANCH}
+          stage_name: dev
           context: Development
+          requires:
+            - deploy-root-service
 
-      - deploy-service:
+      - deploy-networks-service:
           name: Deploy Networks API
           service_path: services/networks-api
-          stage_name: ${CIRCLE_BRANCH}
+          stage_name: dev
           context: Development
+          requires:
+            - deploy-root-service
 
-      - deploy-service:
+      - deploy-orderers-service:
           name: Deploy Orderers API
           service_path: services/orderers-api
-          stage_name: ${CIRCLE_BRANCH}
+          stage_name: dev
           context: Development
+          requires:
+            - deploy-root-service
 
-      - deploy-service:
+      - deploy-orgs-service:
           name: Deploy Orgs API
           service_path: services/orgs-api
-          stage_name: ${CIRCLE_BRANCH}
+          stage_name: dev
           context: Development
+          requires:
+            - deploy-root-service
 
-      - deploy-service:
+      - deploy-peers-service:
           name: Deploy Peers API
           service_path: services/peers-api
-          stage_name: ${CIRCLE_BRANCH}
+          stage_name: dev
           context: Development
+          requires:
+            - deploy-root-service
 
-      - deploy-service:
+      - deploy-transactions-service:
           name: Deploy Transactions API
           service_path: services/transactions-api
-          stage_name: ${CIRCLE_BRANCH}
+          stage_name: dev
           context: Development
+          requires:
+            - deploy-root-service
 
-      - deploy-service:
+      - deploy-auth-service:
           name: Deploy Auth
           service_path: services/auth
-          stage_name: ${CIRCLE_BRANCH}
+          stage_name: dev
           context: Development
+          requires:
+            - deploy-root-service
+            - deploy-applications-service
+            - deploy-cas-service
+            - deploy-chaincodes-service
+            - deploy-channels-service
+            - deploy-consortiums-service
+            - deploy-extnetworks-service
+            - deploy-networks-service
+            - deploy-orderers-service
+            - deploy-orgs-service
+            - deploy-peers-service
+            - deploy-transactions-service
