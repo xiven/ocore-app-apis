@@ -1,0 +1,122 @@
+version: 2.1
+
+jobs:
+  deploy-service:
+    docker:
+      - image: circleci/node:8.10
+    parameters:
+      service_path:
+        type: string
+      stage_name:
+        type: string
+    steps:
+      - checkout
+
+      - restore_cache:
+          keys:
+            - dependencies-cache-{{ checksum "package-lock.json" }}-{{ checksum "<< parameters.service_path >>/package-lock.json" }}
+            - dependencies-cache
+
+      - run:
+          name: Install Serverless CLI
+          command: sudo npm i -g serverless
+
+      - run:
+          name: Install dependencies
+          command: |
+            npm install
+            cd << parameters.service_path >>
+            npm install
+
+      - run:
+          name: Deploy application
+          command: |
+            cd << parameters.service_path >>
+            serverless deploy -s << parameters.stage_name >>
+
+      - save_cache:
+          paths:
+            - node_modules
+            - << parameters.service_path >>/node_modules
+          key: dependencies-cache-{{ checksum "package-lock.json" }}-{{ checksum "<< parameters.service_path >>/package-lock.json" }}
+
+workflows:
+  build-deploy:
+    jobs:
+      - deploy-service:
+          name: Deploy Root API
+          service_path: services/root-api
+          stage_name: ${CIRCLE_BRANCH}
+          context: Development
+
+      - deploy-service:
+          name: Deploy Applications API
+          service_path: services/applications-api
+          stage_name: ${CIRCLE_BRANCH}
+          context: Development
+
+      - deploy-service:
+          name: Deploy CAs API
+          service_path: services/cas-api
+          stage_name: ${CIRCLE_BRANCH}
+          context: Development
+
+      - deploy-service:
+          name: Deploy Chaincodes API
+          service_path: services/chaincodes-api
+          stage_name: ${CIRCLE_BRANCH}
+          context: Development
+
+      - deploy-service:
+          name: Deploy Channels API
+          service_path: services/channels-api
+          stage_name: ${CIRCLE_BRANCH}
+          context: Development
+
+      - deploy-service:
+          name: Deploy Consortiums API
+          service_path: services/consortiums-api
+          stage_name: ${CIRCLE_BRANCH}
+          context: Development
+
+      - deploy-service:
+          name: Deploy ExtNetworks API
+          service_path: services/extnetworks-api
+          stage_name: ${CIRCLE_BRANCH}
+          context: Development
+
+      - deploy-service:
+          name: Deploy Networks API
+          service_path: services/networks-api
+          stage_name: ${CIRCLE_BRANCH}
+          context: Development
+
+      - deploy-service:
+          name: Deploy Orderers API
+          service_path: services/orderers-api
+          stage_name: ${CIRCLE_BRANCH}
+          context: Development
+
+      - deploy-service:
+          name: Deploy Orgs API
+          service_path: services/orgs-api
+          stage_name: ${CIRCLE_BRANCH}
+          context: Development
+
+      - deploy-service:
+          name: Deploy Peers API
+          service_path: services/peers-api
+          stage_name: ${CIRCLE_BRANCH}
+          context: Development
+
+      - deploy-service:
+          name: Deploy Transactions API
+          service_path: services/transactions-api
+          stage_name: ${CIRCLE_BRANCH}
+          context: Development
+
+      - deploy-service:
+          name: Deploy Auth
+          service_path: services/auth
+          stage_name: ${CIRCLE_BRANCH}
+          context: Development
